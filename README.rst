@@ -1,6 +1,8 @@
 # monitor-notify
 
 You should install the mako library first before you gernerate html. You can use pip command.
+
+
 pip install mako
 
 1 python getemail.py 
