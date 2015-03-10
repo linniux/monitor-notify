@@ -1,0 +1,101 @@
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<title>
+${time} Monitor Statics
+</title>
+</head>
+<body>
+<h1>${time} ${title}</h1>
+<p>
+<h2>The Sum of  Monitor Statics</h2>
+<%
+from anylyze import Parsefile
+import sys
+import datetime
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+def get_time(interval=1):
+                now = (datetime.datetime.now()-datetime.timedelta(days = interval)).strftime("%Y-%m-%d")
+                return now
+
+
+
+file = 'monitor-' + get_time() + '.csv'
+
+c = Parsefile(file)
+d,s,t= c.counts()
+
+
+svalue = []
+for i in s:
+        svalue.append(str(s[i]))
+
+dvalue = []
+for i in d:
+        dvalue.append(str(d[i]))
+
+tvalue = []
+it = []
+for i in t:
+
+        tvalue.append(str(t[i]))
+        it.append(i[5:7])
+%>
+<p>
+<p>
+<p>
+<table width=640, border="1", cellpadding="5", cellspacing="0", style="border:1px solid #999; border-collapse: collapse;color:#444;" >
+        <tr bgcolor="#f8f8f8", style="background: #f8f8f8;color:#333;">
+                % for key in s:
+                        <th>${key}</th>
+                % endfor
+        </tr>
+        <tr>
+                % for v in svalue:
+                        <td align='center'>${v}</td>
+                % endfor
+        </tr>
+</table>
+<hr />
+<h2>The detail statistics by business</h2>
+
+<table width=640, border="1", cellpadding="5", cellspacing="0", style="border:1px solid #999; border-collapse: collapse;color:#444;" >
+        <tr bgcolor="#f8f8f8", style="background: #f8f8f8;color:#333;">
+                % for key in d:
+                        <th>${key}</th>
+                % endfor
+        </tr>
+        <tr>
+                % for v in dvalue:
+                        <td align='center'>${v}</td>
+                % endfor
+        </tr>
+</table>
+<hr />
+<h2> Detailed time statistics of the monitor statics by hour</h2>
+<table width=640, border="1", cellpadding="5", cellspacing="0", style="border:1px solid #999; border-collapse: collapse;color:#444;" >
+        <tr bgcolor="#f8f8f8", style="background: #f8f8f8;color:#333;">
+                % for key in it:
+                        <th>${key}</th>
+                % endfor
+        </tr>
+        <tr>
+                % for v in tvalue:
+                        <td align='center'>${v}</td>
+                % endfor
+        </tr>
+</table>
+<hr />
+<h2> Summary</h2>
+<table width=640, border="1", cellpadding="5", cellspacing="0", style="border:1px solid #999; border-collapse: collapse;color:#444;" >
+        <tr bgcolor="#f8f8f8", style="background: #f8f8f8;color:#333;">
+                        <th>${summary}</th>
+        </tr>
+        <tr>
+                        <td align='left'>${detail}</td>
+        </tr>
+</table>
+</body>
+</html>
