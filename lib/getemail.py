@@ -95,7 +95,7 @@ def check_email():
         M.select(readonly=True)
         #print M.list()
 
-        #typ, msgnums = M.search(None, 'FROM', '"zhiqian.wang@autonavi.com"')
+        #typ, msgnums = M.search(None, 'FROM', '"abc.test@autonavi.com"')
         #typ, data = M.search(None,'(SINCE "07-Mar-2015" before "11-Mar-2015")')
         typ, data = M.search(None,eval(MAILTIMECYCLE))
         
