@@ -1,7 +1,7 @@
 '''
-Created on 2015Äê3ÔÂ10ÈÕ
+Created on 2015å¹´3æœˆ10æ—¥
 
-@author: zhiqian.wang
+@author: 
 '''
 
 
@@ -14,7 +14,7 @@ class Parsefile(object):
         def __init__(self,monitorfile):
                 self.monitorfile = monitorfile
                 self.detail = re.compile(r'test|Test|Film|QQ|Google',re.I|re.M|re.S)
-                self.summary = re.compile(r'¹ÊÕÏ±¨¾¯|¹ÊÕÏ»Ö¸´')
+                self.summary = re.compile(r'æ•…éšœæŠ¥è­¦|æ•…éšœæ¢å¤')
                 self.time = re.compile(r'2015 00|2015 01|2015 02|2015 03|2015 04|2015 05|2015 06|2015 07|2015 08|2015 09|2015 10|2015 11|2015 12|2015 13|2015 14|2015 15|2015 16|2015 17|2015 18|2015 19|2015 20|2015 21|2015 22|2015 23|2015 24')
                 self.f = open(self.monitorfile,"r")
 
